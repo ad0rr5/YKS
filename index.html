@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="YKS sınavına hazırlık için kapsamlı eğitim platformu. Ders takibi, deneme sınavları ve kişisel çalışma planları.">
+    <meta name="keywords" content="YKS, üniversite sınavı, TYT, AYT, çalışma planı, deneme sınavı, eğitim">
+    <meta name="author" content="YKS Başarı Akademisi">
+    <meta name="theme-color" content="#4361ee">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="YKS Akademi">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ccircle cx='50' cy='50' r='45' fill='%234361ee'/%3e%3cpath d='M18 28 L82 28 L82 38 L28 38 L28 82 L18 82 Z M58 48 L82 48 L82 58 L58 58 Z M58 63 L77 63 L77 73 L58 73 Z' fill='white'/%3e%3c/svg%3e">
+    <title>YKS Başarı Akademisi - Giriş</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="optimizations.js"></script>
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>YKS Başarı Akademisi</h2>
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+            </div>
+            
+            <div class="login-form">
+                <div class="form-group">
+                    <label for="password">Şifre</label>
+                    <div class="password-input-container">
+                        <input type="password" id="password" placeholder="Erişim kodunuzu giriniz">
+                        <i class="fas fa-eye toggle-password"></i>
+                    </div>
+                    <p class="error-message"></p>
+                </div>
+                <button id="login-btn">Giriş Yap</button>
+                <p class="info-text">Erişim kodunuzu öğretmeninizden alabilirsiniz</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ana Sayfa (Giriş başarılı olduğunda görünür olacak) -->
+    <div class="main-page hidden">
+        <!-- Header -->
+        <header class="site-header">
+            <div class="header-container">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h1>YKS Başarı Akademisi</h1>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li class="active"><a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                        <li><a href="dersler.html"><i class="fas fa-book"></i> Derslerim</a></li>
+                        <li><a href="plan.html"><i class="fas fa-calendar-alt"></i> Planlarım</a></li>
+                        <li><a href="denemeler.html"><i class="fas fa-chart-line"></i> Denemelerim</a></li>
+                    </ul>
+                </nav>
+                <div class="user-menu">
+                    <span id="user-name">Öğrenci</span>
+                    <button id="logout-btn"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Hedefine Giden Yolda <br><span class="highlight">Yanındayız</span></h2>
+                    <p>Kişiselleştirilmiş eğitim programları, deneyimli öğretmenler ve zengin içerikle hayalindeki üniversiteyi kazanmana destek oluyoruz.</p>
+                    <div class="cta-buttons">
+                        <a href="dersler.html" class="btn-primary">Bugünkü Derslerim</a>
+                        <a href="denemeler.html" class="btn-secondary">Deneme Sınavlarım</a>
+                    </div>
+                </div>
+                <div class="exam-countdown">
+                    <h3>YKS'ye Kalan Süre</h3>
+                    <div class="countdown-timer">
+                        <div class="time-block">
+                            <span class="time" id="days">146</span>
+                            <span class="label">Gün</span>
+                        </div>
+                        <div class="time-block">
+                            <span class="time" id="hours">08</span>
+                            <span class="label">Saat</span>
+                        </div>
+                        <div class="time-block">
+                            <span class="time" id="minutes">23</span>
+                            <span class="label">Dakika</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <section class="stats-bar">
+            <div class="container">
+                <div class="stat-item">
+                    <div class="stat-number" id="total-questions">12.500+</div>
+                    <div class="stat-label">Soru Çözümü</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">450+</div>
+                    <div class="stat-label">Video Ders</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="success-rate">85%</div>
+                    <div class="stat-label">Başarı Oranı</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="total-exams-stat">0</div>
+                    <div class="stat-label">Deneme Sınavı</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Progress Section -->
+        <section class="course-progress">
+            <div class="container">
+                <h2 class="section-title">Ders İlerlemen</h2>
+                <div class="progress-cards"></div>
+            </div>
+        </section>
+        <script src="index-progress.js"></script>
+
+        <!-- Latest Exams Section -->
+        <section class="latest-exams">
+            <div class="container">
+                <h2 class="section-title">Son Deneme Sınavların</h2>
+                <div class="exams-table">
+                    <div class="exam-table-header">
+                        <div class="exam-name">Sınav Adı</div>
+                        <div class="exam-date">Tarih</div>
+                        <div class="exam-score">Net</div>
+                        <div class="exam-rank">Sıralama</div>
+                        <div class="exam-action">Detay</div>
+                    </div>
+                    
+                    <div id="recent-exams-list">
+                        <!-- Kullanıcının son 3 denemesi buraya dinamik olarak yüklenecek -->
+                        <div class="no-recent-exams" style="text-align: center; padding: 40px; color: #8d99ae;">
+                            <i class="fas fa-clipboard-list" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+                            <h3 style="margin-bottom: 8px;">Henüz deneme sınavı eklemedin</h3>
+                            <p>İlk deneme sınavını eklemek için aşağıdaki butona tıkla.</p>
+                            <a href="denemeler.html" class="btn-primary" style="margin-top: 16px; display: inline-flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-plus"></i> İlk Denemi Ekle
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="view-all-link">
+                    <a href="denemeler.html">Tüm Sınavlarım <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Plan Section -->
+        <section class="study-plan">
+            <div class="container">
+                <h2 class="section-title">Bu Haftaki Çalışma Programın</h2>
+                <div class="calendar">
+                    <!-- Gerçek kullanıcı planları buraya yüklenecek -->
+                </div>
+            </div>
+        </section>
+        <script src="index-plan.js"></script>
+
+        <!-- Mobile Download Button -->
+        <button class="mobile-download" id="mobile-download-btn" title="Mobil Uygulamayı İndir">
+            <i class="fas fa-download"></i>
+        </button>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>YKS Başarı Akademisi</h3>
+                        <p>Hayalindeki üniversiteye giden yol</p>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Hızlı Linkler</h4>
+                            <ul>
+                                <li><a href="index.html">Ana Sayfa</a></li>
+                                <li><a href="dersler.html">Derslerim</a></li>
+                                <li><a href="plan.html">Planlarım</a></li>
+                                <li><a href="denemeler.html">Denemelerim</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-column">
+                            <h4>İletişim</h4>
+                            <ul class="contact-info">
+                                <li><i class="fas fa-envelope"></i> info@yksbasari.com</li>
+                                <li><i class="fas fa-phone"></i> (0212) 555 0123</li>
+                                <li><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2024 YKS Başarı Akademisi. Tüm hakları saklıdır.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

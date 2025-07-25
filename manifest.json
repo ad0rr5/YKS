@@ -1,0 +1,124 @@
+{
+    "name": "YKS Başarı Akademisi",
+    "short_name": "YKS Akademi",
+    "description": "YKS sınavına hazırlık için kapsamlı çalışma platformu. Ders takibi, deneme sınavları ve kişisel çalışma planları.",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4361ee",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "categories": ["education", "productivity"],
+    "lang": "tr",
+    "dir": "ltr",
+    "icons": [
+        {
+            "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ccircle cx='50' cy='50' r='45' fill='%234361ee'/%3e%3ctext x='50' y='60' text-anchor='middle' fill='white' font-size='40' font-family='Arial, sans-serif'%3eY%3c/text%3e%3c/svg%3e",
+            "sizes": "72x72",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ccircle cx='50' cy='50' r='45' fill='%234361ee'/%3e%3ctext x='50' y='60' text-anchor='middle' fill='white' font-size='35' font-family='Arial, sans-serif'%3eYKS%3c/text%3e%3c/svg%3e",
+            "sizes": "96x96",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ccircle cx='50' cy='50' r='45' fill='%234361ee'/%3e%3cpath d='M30 30 L70 30 L70 50 L60 50 L60 40 L40 40 L40 70 L30 70 Z' fill='white'/%3e%3ccircle cx='65' cy='65' r='8' fill='white'/%3e%3c/svg%3e",
+            "sizes": "128x128",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3clinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%234361ee;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%233051d3;stop-opacity:1' /%3e%3c/linearGradient%3e%3c/defs%3e%3ccircle cx='50' cy='50' r='45' fill='url(%23grad)'/%3e%3cpath d='M25 35 L75 35 L75 45 L35 45 L35 75 L25 75 Z M60 50 L75 50 L75 60 L60 60 Z' fill='white'/%3e%3ccircle cx='67.5' cy='67.5' r='7.5' fill='white'/%3e%3c/svg%3e",
+            "sizes": "144x144",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3clinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%234361ee;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%233051d3;stop-opacity:1' /%3e%3c/linearGradient%3e%3c/defs%3e%3ccircle cx='50' cy='50' r='45' fill='url(%23grad)'/%3e%3cpath d='M20 30 L80 30 L80 40 L30 40 L30 80 L20 80 Z M60 50 L80 50 L80 60 L60 60 Z M60 65 L75 65 L75 75 L60 75 Z' fill='white'/%3e%3c/svg%3e",
+            "sizes": "168x168",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3clinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%234361ee;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%233051d3;stop-opacity:1' /%3e%3c/linearGradient%3e%3cfilter id='shadow'%3e%3cfeDropShadow dx='2' dy='2' stdDeviation='2' flood-opacity='0.3'/%3e%3c/filter%3e%3c/defs%3e%3ccircle cx='50' cy='50' r='45' fill='url(%23grad)' filter='url(%23shadow)'/%3e%3cpath d='M18 28 L82 28 L82 38 L28 38 L28 82 L18 82 Z M58 48 L82 48 L82 58 L58 58 Z M58 63 L77 63 L77 73 L58 73 Z' fill='white'/%3e%3c/svg%3e",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3clinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%234361ee;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%233051d3;stop-opacity:1' /%3e%3c/linearGradient%3e%3cfilter id='shadow'%3e%3cfeDropShadow dx='3' dy='3' stdDeviation='3' flood-opacity='0.4'/%3e%3c/filter%3e%3c/defs%3e%3ccircle cx='50' cy='50' r='45' fill='url(%23grad)' filter='url(%23shadow)'/%3e%3cpath d='M15 25 L85 25 L85 35 L25 35 L25 85 L15 85 Z M55 45 L85 45 L85 55 L55 55 Z M55 60 L80 60 L80 70 L55 70 Z M55 75 L75 75 L75 85 L55 85 Z' fill='white'/%3e%3c/svg%3e",
+            "sizes": "256x256",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3clinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3e%3cstop offset='0%25' style='stop-color:%234361ee;stop-opacity:1' /%3e%3cstop offset='100%25' style='stop-color:%233051d3;stop-opacity:1' /%3e%3c/linearGradient%3e%3cfilter id='shadow'%3e%3cfeDropShadow dx='4' dy='4' stdDeviation='4' flood-opacity='0.5'/%3e%3c/filter%3e%3c/defs%3e%3ccircle cx='50' cy='50' r='45' fill='url(%23grad)' filter='url(%23shadow)'/%3e%3cpath d='M12 22 L88 22 L88 32 L22 32 L22 88 L12 88 Z M52 42 L88 42 L88 52 L52 52 Z M52 57 L83 57 L83 67 L52 67 Z M52 72 L78 72 L78 82 L52 82 Z' fill='white'/%3e%3c/svg%3e",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 375 667'%3e%3crect width='375' height='667' fill='%23f8f9fa'/%3e%3crect x='0' y='0' width='375' height='80' fill='%234361ee'/%3e%3ctext x='187.5' y='50' text-anchor='middle' fill='white' font-size='18' font-family='Arial, sans-serif'%3eYKS Başarı Akademisi%3c/text%3e%3crect x='20' y='100' width='335' height='80' fill='white' rx='10'/%3e%3ctext x='40' y='130' fill='%234361ee' font-size='16' font-family='Arial, sans-serif'%3eBu Haftaki Genel Bakış%3c/text%3e%3crect x='20' y='200' width='335' height='400' fill='white' rx='10'/%3e%3ctext x='40' y='230' fill='%234361ee' font-size='16' font-family='Arial, sans-serif'%3eHaftalık Programım%3c/text%3e%3c/svg%3e",
+            "sizes": "375x667",
+            "type": "image/svg+xml",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 768'%3e%3crect width='1024' height='768' fill='%23f8f9fa'/%3e%3crect x='0' y='0' width='1024' height='80' fill='%234361ee'/%3e%3ctext x='512' y='50' text-anchor='middle' fill='white' font-size='24' font-family='Arial, sans-serif'%3eYKS Başarı Akademisi%3c/text%3e%3crect x='50' y='120' width='924' height='100' fill='white' rx='15'/%3e%3ctext x='70' y='160' fill='%234361ee' font-size='20' font-family='Arial, sans-serif'%3eBu Haftaki Genel Bakış%3c/text%3e%3crect x='50' y='250' width='924' height='450' fill='white' rx='15'/%3e%3ctext x='70' y='290' fill='%234361ee' font-size='20' font-family='Arial, sans-serif'%3eHaftalık Programım%3c/text%3e%3c/svg%3e",
+            "sizes": "1024x768",
+            "type": "image/svg+xml",
+            "form_factor": "wide"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Planlarım",
+            "short_name": "Plan",
+            "description": "Haftalık çalışma planını görüntüle",
+            "url": "/plan.html",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ccircle cx='50' cy='50' r='45' fill='%234361ee'/%3e%3cpath d='M30 25 L70 25 L70 35 L30 35 Z M25 35 L75 35 L75 75 L25 75 Z M35 45 L65 45 L65 50 L35 50 Z M35 55 L60 55 L60 60 L35 60 Z M35 65 L55 65 L55 70 L35 70 Z' fill='white'/%3e%3c/svg%3e",
+                    "sizes": "96x96",
+                    "type": "image/svg+xml"
+                }
+            ]
+        },
+        {
+            "name": "Derslerim",
+            "short_name": "Ders",
+            "description": "Ders ilerleme durumunu kontrol et",
+            "url": "/dersler.html",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ccircle cx='50' cy='50' r='45' fill='%234361ee'/%3e%3cpath d='M25 30 L75 30 L75 75 L25 75 Z M30 35 L70 35 L70 70 L30 70 Z M35 40 L65 40 L65 45 L35 45 Z M35 50 L60 50 L60 55 L35 55 Z M35 60 L55 60 L55 65 L35 65 Z' fill='white'/%3e%3c/svg%3e",
+                    "sizes": "96x96",
+                    "type": "image/svg+xml"
+                }
+            ]
+        },
+        {
+            "name": "Denemelerim",
+            "short_name": "Deneme",
+            "description": "Deneme sınav sonuçlarını gör",
+            "url": "/denemeler.html",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ccircle cx='50' cy='50' r='45' fill='%234361ee'/%3e%3cpath d='M30 25 L70 25 L70 75 L30 75 Z M35 35 L65 35 L35 55 L55 55 L55 45 L65 45 L65 65 L35 65 Z' fill='white'/%3e%3c/svg%3e",
+                    "sizes": "96x96",
+                    "type": "image/svg+xml"
+                }
+            ]
+        }
+    ],
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "edge_side_panel": {
+        "preferred_width": 400
+    }
+}

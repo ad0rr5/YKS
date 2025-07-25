@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="YKS sınavına hazırlık için kişisel çalışma planları oluşturun ve haftalık programınızı yönetin.">
+    <meta name="keywords" content="YKS, çalışma planı, haftalık program, sınav hazırlığı, eğitim">
+    <meta name="author" content="YKS Başarı Akademisi">
+    <meta name="theme-color" content="#4361ee">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="YKS Planları">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ccircle cx='50' cy='50' r='45' fill='%234361ee'/%3e%3cpath d='M30 25 L70 25 L70 35 L30 35 Z M25 35 L75 35 L75 75 L25 75 Z M35 45 L65 45 L65 50 L35 50 Z M35 55 L60 55 L60 60 L35 60 Z M35 65 L55 65 L55 70 L35 70 Z' fill='white'/%3e%3c/svg%3e">
+    <title>YKS Başarı Akademisi - Planlarım</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="planlar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="optimizations.js"></script>
+</head>
+<body>
+    <div class="main-page" style="opacity: 0;">
+        <!-- Header -->
+        <header class="site-header">
+            <div class="header-container">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h1>YKS Başarı Akademisi</h1>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                        <li><a href="dersler.html"><i class="fas fa-book"></i> Derslerim</a></li>
+                        <li class="active"><a href="plan.html"><i class="fas fa-calendar-alt"></i> Planlarım</a></li>
+                        <li><a href="denemeler.html"><i class="fas fa-chart-line"></i> Denemelerim</a></li>
+                    </ul>
+                </nav>
+                <div class="user-menu">
+                    <span id="user-name">Öğrenci</span>
+                    <button id="logout-btn"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Planlarım</h1>
+                <p>Günlük çalışma planınızı oluşturun ve hedeflerinize odaklanın</p>
+            </div>
+        </section>
+
+        <!-- Plan Overview -->
+        <section class="plan-overview">
+            <div class="container">
+                <h2 class="section-title">Bu Haftaki Genel Bakış</h2>
+                <div class="overview-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="stat-number" id="total-sessions">0</div>
+                        <div class="stat-label">Toplam Ders</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-number" id="completed-sessions">0</div>
+                        <div class="stat-label">Tamamlanan</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-number" id="total-hours">0</div>
+                        <div class="stat-label">Toplam Saat</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="stat-number" id="completion-rate">0%</div>
+                        <div class="stat-label">Tamamlanma Oranı</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Plan Controls -->
+        <section class="plan-controls">
+            <div class="container">
+                <div class="controls-header">
+                    <div class="week-navigator">
+                        <button class="nav-btn" id="prev-week">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="current-week" id="current-week">
+                            Bu Hafta
+                        </div>
+                        <button class="nav-btn" id="next-week">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="plan-actions">
+                        <button class="btn-primary" id="quick-add-btn">
+                            <i class="fas fa-plus"></i>
+                            Hızlı Ekle
+                        </button>
+                        <button class="btn-secondary" id="template-btn">
+                            <i class="fas fa-copy"></i>
+                            Şablon Kullan
+                        </button>
+                        <button class="btn-success" id="auto-plan-btn">
+                            <i class="fas fa-magic"></i>
+                            Otomatik Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weekly Calendar -->
+        <section class="weekly-calendar">
+            <div class="container">
+                <h2 class="section-title">Haftalık Programım</h2>
+                <div class="calendar-grid" id="calendar-grid">
+                    <!-- Calendar days will be generated by JavaScript -->
+                </div>
+                
+                <!-- Weekly Statistics -->
+                <div class="weekly-stats">
+                    <h3>Haftalık İstatistikler</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="week-math">0</div>
+                            <div class="stat-title">Matematik</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="week-physics">0</div>
+                            <div class="stat-title">Fizik</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="week-chemistry">0</div>
+                            <div class="stat-title">Kimya</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="week-biology">0</div>
+                            <div class="stat-title">Biyoloji</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="week-turkish">0</div>
+                            <div class="stat-title">Türkçe</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="week-history">0</div>
+                            <div class="stat-title">Tarih</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="week-geography">0</div>
+                            <div class="stat-title">Coğrafya</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="week-philosophy">0</div>
+                            <div class="stat-title">Felsefe</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add/Edit Session Modal -->
+        <div id="session-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Ders Ekle</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="session-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="session-date">Tarih</label>
+                                <input type="date" id="session-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="session-subject">Ders</label>
+                                <select id="session-subject" required>
+                                    <option value="">Ders Seçin</option>
+                                    <option value="mathematics">Matematik</option>
+                                    <option value="physics">Fizik</option>
+                                    <option value="chemistry">Kimya</option>
+                                    <option value="biology">Biyoloji</option>
+                                    <option value="turkish">Türkçe</option>
+                                    <option value="history">Tarih</option>
+                                    <option value="geography">Coğrafya</option>
+                                    <option value="philosophy">Felsefe</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="session-start-time">Başlangıç Saati</label>
+                                <input type="time" id="session-start-time" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="session-duration">Süre (dakika)</label>
+                                <select id="session-duration" required>
+                                    <option value="30">30 dakika</option>
+                                    <option value="45">45 dakika</option>
+                                    <option value="60" selected>1 saat</option>
+                                    <option value="90">1.5 saat</option>
+                                    <option value="120">2 saat</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="session-topic">Konu</label>
+                            <input type="text" id="session-topic" placeholder="Örn: Türev Konusu" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="session-notes">Notlar (İsteğe bağlı)</label>
+                            <textarea id="session-notes" rows="3" placeholder="Bu dersle ilgili notlarınız..."></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" id="cancel-session">İptal</button>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i>
+                                Kaydet
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Template Modal -->
+        <div id="template-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Şablon Seç</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="template-list">
+                        <div class="template-item" data-template="intensive">
+                            <h3>Yoğun Çalışma Programı</h3>
+                            <p>Günde 8-10 saat çalışma</p>
+                        </div>
+                        <div class="template-item" data-template="balanced">
+                            <h3>Dengeli Program</h3>
+                            <p>Günde 5-6 saat çalışma</p>
+                        </div>
+                        <div class="template-item" data-template="light">
+                            <h3>Hafif Program</h3>
+                            <p>Günde 3-4 saat çalışma</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Download Button -->
+        <button class="mobile-download" id="mobile-download-btn" title="Mobil Uygulamayı İndir">
+            <i class="fas fa-download"></i>
+        </button>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>YKS Başarı Akademisi</h3>
+                        <p>Hayalindeki üniversiteye giden yol</p>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Hızlı Linkler</h4>
+                            <ul>
+                                <li><a href="index.html">Ana Sayfa</a></li>
+                                <li><a href="dersler.html">Derslerim</a></li>
+                                <li><a href="plan.html">Planlarım</a></li>
+                                <li><a href="denemeler.html">Denemelerim</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-column">
+                            <h4>İletişim</h4>
+                            <ul class="contact-info">
+                                <li><i class="fas fa-envelope"></i> info@yksbasari.com</li>
+                                <li><i class="fas fa-phone"></i> (0212) 555 0123</li>
+                                <li><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2024 YKS Başarı Akademisi. Tüm hakları saklıdır.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Page Loading Animation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainPage = document.querySelector('.main-page');
+            
+            setTimeout(() => {
+                mainPage.style.opacity = '1';
+                mainPage.classList.add('fade-in');
+            }, 100);
+            
+            const cards = document.querySelectorAll('.stat-card, .day-column');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                }, 200 + (index * 100));
+            });
+        });
+    </script>
+    
+    <script src="planlar.js"></script>
+</body>
+</html>

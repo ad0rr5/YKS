@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="YKS derslerinizi düzenleyin, konuları takip edin ve ders ilerlemenizi yönetin.">
+    <meta name="keywords" content="YKS dersleri, matematik, fizik, kimya, biyoloji, türkçe, tarih, coğrafya">
+    <meta name="author" content="YKS Başarı Akademisi">
+    <meta name="theme-color" content="#4361ee">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="YKS Dersler">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ccircle cx='50' cy='50' r='45' fill='%234361ee'/%3e%3cpath d='M25 30 L75 30 L75 75 L25 75 Z M30 35 L70 35 L70 70 L30 70 Z M35 40 L65 40 L65 45 L35 45 Z M35 50 L60 50 L60 55 L35 55 Z M35 60 L55 60 L55 65 L35 65 Z' fill='white'/%3e%3c/svg%3e">
+    <title>YKS Başarı Akademisi - Derslerim</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dersler.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="optimizations.js"></script>
+</head>
+<body>
+    <div class="main-page" style="opacity: 0;"">
+        <!-- Header -->
+        <header class="site-header">
+            <div class="header-container">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h1>YKS Başarı Akademisi</h1>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                        <li class="active"><a href="dersler.html"><i class="fas fa-book"></i> Derslerim</a></li>
+                        <li><a href="plan.html"><i class="fas fa-calendar-alt"></i> Planlarım</a></li>
+                        <li><a href="denemeler.html"><i class="fas fa-chart-line"></i> Denemelerim</a></li>
+                    </ul>
+                </nav>
+                <div class="user-menu">
+                    <span id="user-name">Öğrenci</span>
+                    <button id="logout-btn"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Derslerim</h1>
+                <p>Kendi çalışma planını oluştur ve ilerlemeni takip et</p>
+            </div>
+        </section>
+
+        <!-- Course Manager -->
+        <section class="course-manager">
+            <div class="container">
+                <!-- Progress Overview -->
+                <div class="progress-overview">
+                    <h2 class="section-title">Genel İlerleme Durumum</h2>
+                    <div class="progress-cards">
+                        <div class="overall-progress">
+                            <div class="circular-progress">
+                                <div class="circular-progress-inner">
+                                    <span class="progress-percentage">0%</span>
+                                </div>
+                            </div>
+                            <h3>Toplam İlerleme</h3>
+                            <p>Tüm derslerdeki ortalama ilerleme yüzden</p>
+                        </div>
+                        <div id="course-progress-cards" class="progress-subjects">
+                            <!-- Burada derslerin ilerleme kartları dinamik olarak gösterilecek -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Actions -->
+                <div class="course-actions">
+                    <button id="add-course-btn" class="btn-primary">
+                        <i class="fas fa-plus"></i> Yeni Ders Ekle
+                    </button>
+                </div>
+
+                <!-- Course List -->
+                <div class="course-list-section">
+                    <h2 class="section-title">Derslerim</h2>
+                    <div class="course-list-header">
+                        <div class="course-search">
+                            <input type="text" id="course-search" placeholder="Ders ara...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="course-filter">
+                            <select id="course-filter">
+                                <option value="all">Tüm Dersler</option>
+                                <option value="tyt">TYT</option>
+                                <option value="ayt">AYT</option>
+                                <option value="ydt">YDT</option>
+                            </select>
+                        </div>
+                        <div class="course-sort">
+                            <select id="course-sort">
+                                <option value="name">Ada Göre</option>
+                                <option value="progress">İlerlemeye Göre</option>
+                                <option value="recent">Son Eklenen</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="course-list" class="course-list">
+                        <!-- Burada dersler dinamik olarak listelenecek -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Detail Modal -->
+        <div id="course-detail-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="course-detail-title">Ders Detayı</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <!-- Ders detayları burada gösterilecek -->
+                    <div class="course-detail-header">
+                        <div class="course-detail-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="course-detail-info">
+                            <h3 id="detail-course-name">Ders Adı</h3>
+                            <div class="course-detail-meta">
+                                <span id="detail-course-category" class="course-category">TYT</span>
+                                <span id="detail-topic-count" class="course-topics">0 Konu</span>
+                                <span id="detail-course-progress" class="course-progress-text">%0 Tamamlandı</span>
+                            </div>
+                        </div>
+                        <div class="course-detail-actions">
+                            <button id="edit-course-btn" class="btn-secondary">
+                                <i class="fas fa-edit"></i> Düzenle
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="course-topics-header">
+                        <h4>Konular</h4>
+                        <button id="add-topic-btn" class="btn-sm">
+                            <i class="fas fa-plus"></i> Konu Ekle
+                        </button>
+                    </div>
+                    
+                    <div id="topic-list" class="topic-list">
+                        <!-- Konular burada listelenecek -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add/Edit Course Modal -->
+        <div id="course-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="course-modal-title">Yeni Ders Ekle</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="course-form">
+                        <div class="form-group">
+                            <label for="course-name">Ders Adı</label>
+                            <input type="text" id="course-name" placeholder="Örn: Matematik, Fizik, Türkçe" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="course-category">Kategori</label>
+                            <select id="course-category" required>
+                                <option value="tyt">TYT</option>
+                                <option value="ayt">AYT</option>
+                                <option value="ydt">YDT</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="course-icon">Simge</label>
+                            <div class="icon-selector">
+                                <div class="icon-option selected" data-icon="fa-book">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="icon-option" data-icon="fa-square-root-alt">
+                                    <i class="fas fa-square-root-alt"></i>
+                                </div>
+                                <div class="icon-option" data-icon="fa-atom">
+                                    <i class="fas fa-atom"></i>
+                                </div>
+                                <div class="icon-option" data-icon="fa-flask">
+                                    <i class="fas fa-flask"></i>
+                                </div>
+                                <div class="icon-option" data-icon="fa-dna">
+                                    <i class="fas fa-dna"></i>
+                                </div>
+                                <div class="icon-option" data-icon="fa-globe-europe">
+                                    <i class="fas fa-globe-europe"></i>
+                                </div>
+                                <div class="icon-option" data-icon="fa-language">
+                                    <i class="fas fa-language"></i>
+                                </div>
+                                <div class="icon-option" data-icon="fa-landmark">
+                                    <i class="fas fa-landmark"></i>
+                                </div>
+                            </div>
+                            <input type="hidden" id="selected-icon" value="fa-book" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="course-color">Renk</label>
+                            <div class="color-selector">
+                                <div class="color-option selected" data-color="#4361ee" style="background-color: #4361ee;"></div>
+                                <div class="color-option" data-color="#3a0ca3" style="background-color: #3a0ca3;"></div>
+                                <div class="color-option" data-color="#7209b7" style="background-color: #7209b7;"></div>
+                                <div class="color-option" data-color="#f72585" style="background-color: #f72585;"></div>
+                                <div class="color-option" data-color="#4cc9f0" style="background-color: #4cc9f0;"></div>
+                                <div class="color-option" data-color="#4caf50" style="background-color: #4caf50;"></div>
+                                <div class="color-option" data-color="#fb8500" style="background-color: #fb8500;"></div>
+                                <div class="color-option" data-color="#e63946" style="background-color: #e63946;"></div>
+                            </div>
+                            <input type="hidden" id="selected-color" value="#4361ee" required>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" id="save-course-btn" class="btn-primary">Kaydet</button>
+                            <button type="button" id="cancel-course-btn" class="btn-secondary">İptal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add/Edit Topic Modal -->
+        <div id="topic-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="topic-modal-title">Yeni Konu Ekle</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="topic-form">
+                        <div class="form-group">
+                            <label for="topic-name">Konu Adı</label>
+                            <input type="text" id="topic-name" placeholder="Örn: Fonksiyonlar, Limit, Türev" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Video Linkleri <small>(birden fazla ekleyebilirsiniz)</small></label>
+                            <div id="video-links-list"></div>
+                            <div style="display:flex;gap:8px;margin-top:4px;">
+                                <input type="url" id="new-video-link" placeholder="Video linki ekle...">
+                                <button type="button" id="add-video-link-btn" class="btn-secondary btn-sm">Ekle</button>
+                            </div>
+                            <small>YouTube, Vimeo veya diğer video platformlarından link ekleyebilirsiniz.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topic-resource">Test/Kaynak Linki <small>(opsiyonel)</small></label>
+                            <input type="url" id="topic-resource" placeholder="Test, PDF veya diğer kaynak linki">
+                            <small>Çözmek istediğiniz test veya yardımcı kaynağın linkini ekleyebilirsiniz.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topic-pdf">PDF Yükle <small>(opsiyonel)</small></label>
+                            <input type="file" id="topic-pdf" accept="application/pdf">
+                            <small>PDF formatında konu dokümanı yükleyebilirsiniz.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topic-question-count">Çözülen Soru Sayısı <small>(opsiyonel)</small></label>
+                            <input type="number" id="topic-question-count" min="0" placeholder="Kaç soru çözdünüz?">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="topic-notes">Notlar <small>(opsiyonel)</small></label>
+                            <textarea id="topic-notes" rows="3" placeholder="Bu konuyla ilgili kişisel notlarınız"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" id="save-topic-btn" class="btn-primary">Kaydet</button>
+                            <button type="button" id="cancel-topic-btn" class="btn-secondary">İptal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Topic Detail Modal -->
+        <div id="topic-detail-modal" class="modal">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <h2 id="topic-detail-title">Konu Detayı</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="topic-detail-container">
+                        <div class="topic-detail-sidebar">
+                            <div class="topic-detail-info">
+                                <h3 id="detail-topic-name">Konu Adı</h3>
+                                <p id="detail-course-name-display">Ders Adı</p>
+                                
+                                <div class="topic-progress">
+                                    <div class="progress-item">
+                                        <label>
+                                            <input type="checkbox" id="video-completed" class="progress-checkbox">
+                                            <span>Video İzlendi</span>
+                                        </label>
+                                    </div>
+                                    <div class="progress-item">
+                                        <label>
+                                            <input type="checkbox" id="test-completed" class="progress-checkbox">
+                                            <span>Test Çözüldü</span>
+                                        </label>
+                                    </div>
+                                    <div class="progress-status">
+                                        <span id="topic-status">Tamamlanmadı</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="topic-notes-preview">
+                                    <h4>Notlar</h4>
+                                    <div id="topic-notes-display" class="notes-content">
+                                        Bu konuya henüz not eklemediniz.
+                                    </div>
+                                </div>
+                                
+                                <div class="topic-actions">
+                                    <button id="edit-topic-btn" class="btn-secondary btn-sm">
+                                        <i class="fas fa-edit"></i> Düzenle
+                                    </button>
+                                    <button id="delete-topic-btn" class="btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i> Sil
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="topic-detail-content">
+                            <div class="topic-resources">
+                                <div class="topic-video">
+                                    <h4>Video</h4>
+                                    <div id="video-container" class="video-container">
+                                        <div class="no-content">
+                                            <i class="fas fa-video-slash"></i>
+                                            <p>Bu konu için video eklenmedi.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="topic-resource">
+                                    <h4>Test/Kaynak</h4>
+                                    <div id="resource-container" class="resource-container">
+                                        <div class="no-content">
+                                            <i class="fas fa-file-alt"></i>
+                                            <p>Bu konu için test/kaynak eklenmedi.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="confirm-modal" class="modal">
+            <div class="modal-content modal-sm">
+                <div class="modal-header">
+                    <h2 id="confirm-title">Emin misiniz?</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p id="confirm-message">Bu işlem geri alınamaz. Devam etmek istediğinizden emin misiniz?</p>
+                    <div class="confirm-actions">
+                        <button id="confirm-yes" class="btn-danger">Evet, Sil</button>
+                        <button id="confirm-no" class="btn-secondary">İptal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>YKS Başarı Akademisi</h3>
+                        <p>Hayalindeki üniversiteye bir adım daha yakın.</p>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Hızlı Erişim</h4>
+                            <ul>
+                                <li><a href="index.html">Ana Sayfa</a></li>
+                                <li><a href="dersler.html">Dersler</a></li>
+                                <li><a href="kaynaklar.html">Kaynaklar</a></li>
+                                <li><a href="denemeler.html">Denemeler</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-column">
+                            <h4>Destek</h4>
+                            <ul>
+                                <li><a href="#">Sık Sorulan Sorular</a></li>
+                                <li><a href="iletisim.html">İletişim</a></li>
+                                <li><a href="#">Yardım Merkezi</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-column">
+                            <h4>İletişim</h4>
+                            <ul class="contact-info">
+                                <li><i class="fas fa-map-marker-alt"></i> Atatürk Bulvarı No:123, Ankara</li>
+                                <li><i class="fas fa-phone"></i> 0312 456 78 90</li>
+                                <li><i class="fas fa-envelope"></i> info@yksbasari.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>© 2025 YKS Başarı Akademisi. Tüm hakları saklıdır.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Mobile Download Button -->
+    <button class="mobile-download" id="mobile-download-btn" title="Mobil Uygulamayı İndir">
+        <i class="fas fa-download"></i>
+    </button>
+
+    <!-- Sayfa Yüklenme Animasyonu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sayfa yüklendiğinde fade-in animasyonu başlat
+            const mainPage = document.querySelector('.main-page');
+            
+            // Kısa bir gecikme ile animasyonu başlat
+            setTimeout(() => {
+                mainPage.style.opacity = '1';
+                mainPage.classList.add('fade-in');
+            }, 100);
+            
+            // Tüm kartları sırayla animasyonla göster
+            const cards = document.querySelectorAll('.progress-cards > *, .course-list > *, .modal');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                }, 200 + (index * 100));
+            });
+        });
+    </script>
+    
+    <script src="ders-yonetim.js"></script>
+</body>
+</html>

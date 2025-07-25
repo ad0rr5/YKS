@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="YKS deneme sınavı sonuçlarınızı kaydedin, analiz edin ve ilerlemenizi takip edin.">
+    <meta name="keywords" content="YKS deneme, sınav sonuçları, TYT deneme, AYT deneme, analiz, istatistik">
+    <meta name="author" content="YKS Başarı Akademisi">
+    <meta name="theme-color" content="#4361ee">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="YKS Denemeler">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ccircle cx='50' cy='50' r='45' fill='%234361ee'/%3e%3cpath d='M30 25 L70 25 L70 75 L30 75 Z M35 35 L65 35 L35 55 L55 55 L55 45 L65 45 L65 65 L35 65 Z' fill='white'/%3e%3c/svg%3e">
+    <title>YKS Başarı Akademisi - Deneme Sınavlarım</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="denemeler.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="optimizations.js"></script>
+</head>
+<body>
+    <div class="main-page" style="opacity: 0;">
+        <!-- Header -->
+        <header class="site-header">
+            <div class="header-container">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h1>YKS Başarı Akademisi</h1>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                        <li><a href="dersler.html"><i class="fas fa-book"></i> Derslerim</a></li>
+                        <li><a href="plan.html"><i class="fas fa-calendar-alt"></i> Planlarım</a></li>
+                        <li class="active"><a href="denemeler.html"><i class="fas fa-chart-line"></i> Denemelerim</a></li>
+                    </ul>
+                </nav>
+                <div class="user-menu">
+                    <span id="user-name">Öğrenci</span>
+                    <button id="logout-btn"><i class="fas fa-sign-out-alt"></i> Çıkış</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Deneme Sınavlarım</h1>
+                <p>Sınav sonuçlarını gir, ilerlemeni takip et ve hedefine odaklan</p>
+            </div>
+        </section>
+
+        <!-- Statistics Overview -->
+        <section class="exam-stats">
+            <div class="container">
+                <h2 class="section-title">Genel İstatistiklerim</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-exams">0</h3>
+                            <p>Toplam Deneme</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="average-score">0</h3>
+                            <p>Ortalama Net</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="best-score">0</h3>
+                            <p>En Yüksek Net</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-target"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="progress-trend">-</h3>
+                            <p>İlerleme Trendi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <div class="container">
+                <div class="action-buttons">
+                    <button id="add-exam-btn" class="btn-primary">
+                        <i class="fas fa-plus"></i> Yeni Deneme Ekle
+                    </button>
+                    <button id="view-analysis-btn" class="btn-secondary">
+                        <i class="fas fa-chart-bar"></i> Detaylı Analiz
+                    </button>
+                    <button id="export-data-btn" class="btn-secondary">
+                        <i class="fas fa-download"></i> Verileri İndir
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Filters -->
+        <section class="exam-filters">
+            <div class="container">
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label>Sınav Türü:</label>
+                        <select id="exam-type-filter">
+                            <option value="all">Tümü</option>
+                            <option value="tyt">TYT</option>
+                            <option value="ayt-sayisal">AYT Sayısal</option>
+                            <option value="ayt-sozel">AYT Sözel</option>
+                            <option value="ayt-esit-agirlik">AYT Eşit Ağırlık</option>
+                            <option value="ydt">YDT</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Tarih Aralığı:</label>
+                        <select id="date-filter">
+                            <option value="all">Tüm Zamanlar</option>
+                            <option value="last-week">Son 1 Hafta</option>
+                            <option value="last-month">Son 1 Ay</option>
+                            <option value="last-3months">Son 3 Ay</option>
+                            <option value="last-6months">Son 6 Ay</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Sıralama:</label>
+                        <select id="sort-filter">
+                            <option value="date-desc">En Yeni</option>
+                            <option value="date-asc">En Eski</option>
+                            <option value="score-desc">En Yüksek Net</option>
+                            <option value="score-asc">En Düşük Net</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam List -->
+        <section class="exam-list-section">
+            <div class="container">
+                <h2 class="section-title">Deneme Sınavlarım</h2>
+                <div id="exam-list" class="exam-list">
+                    <!-- Denemeler buraya dinamik olarak eklenecek -->
+                    <div class="no-exams">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h3>Henüz deneme sınavı eklemedin</h3>
+                        <p>İlk deneme sınavını eklemek için yukarıdaki "Yeni Deneme Ekle" butonuna tıkla.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Add Exam Modal -->
+        <div id="exam-modal" class="modal">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <h2 id="exam-modal-title">Yeni Deneme Sınavı Ekle</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="exam-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="exam-name">Sınav Adı *</label>
+                                <input type="text" id="exam-name" placeholder="Örn: TYT Deneme 8" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exam-type">Sınav Türü *</label>
+                                <select id="exam-type" required>
+                                    <option value="">Seçiniz</option>
+                                    <option value="tyt">TYT</option>
+                                    <option value="ayt-sayisal">AYT Sayısal</option>
+                                    <option value="ayt-sozel">AYT Sözel</option>
+                                    <option value="ayt-esit-agirlik">AYT Eşit Ağırlık</option>
+                                    <option value="ydt">YDT</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="exam-date">Sınav Tarihi *</label>
+                                <input type="date" id="exam-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exam-source">Kaynak</label>
+                                <input type="text" id="exam-source" placeholder="Örn: Ders Hocası, Online Platform">
+                            </div>
+                        </div>
+
+                        <!-- TYT Netler -->
+                        <div id="tyt-section" class="subject-section">
+                            <h3>TYT Netler</h3>
+                            <div class="nets-grid">
+                                <div class="net-input">
+                                    <label for="tyt-turkce">Türkçe</label>
+                                    <input type="number" id="tyt-turkce" min="0" max="40" step="0.25" placeholder="0">
+                                    <span class="max-questions">/40</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="tyt-matematik">Matematik</label>
+                                    <input type="number" id="tyt-matematik" min="0" max="40" step="0.25" placeholder="0">
+                                    <span class="max-questions">/40</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="tyt-fen">Fen Bilimleri</label>
+                                    <input type="number" id="tyt-fen" min="0" max="20" step="0.25" placeholder="0">
+                                    <span class="max-questions">/20</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="tyt-sosyal">Sosyal Bilimler</label>
+                                    <input type="number" id="tyt-sosyal" min="0" max="20" step="0.25" placeholder="0">
+                                    <span class="max-questions">/20</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AYT Sayısal Netler -->
+                        <div id="ayt-sayisal-section" class="subject-section" style="display: none;">
+                            <h3>AYT Sayısal Netler</h3>
+                            <div class="nets-grid">
+                                <div class="net-input">
+                                    <label for="ayt-matematik">Matematik</label>
+                                    <input type="number" id="ayt-matematik" min="0" max="40" step="0.25" placeholder="0">
+                                    <span class="max-questions">/40</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="ayt-fizik">Fizik</label>
+                                    <input type="number" id="ayt-fizik" min="0" max="14" step="0.25" placeholder="0">
+                                    <span class="max-questions">/14</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="ayt-kimya">Kimya</label>
+                                    <input type="number" id="ayt-kimya" min="0" max="13" step="0.25" placeholder="0">
+                                    <span class="max-questions">/13</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="ayt-biyoloji">Biyoloji</label>
+                                    <input type="number" id="ayt-biyoloji" min="0" max="13" step="0.25" placeholder="0">
+                                    <span class="max-questions">/13</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AYT Sözel Netler -->
+                        <div id="ayt-sozel-section" class="subject-section" style="display: none;">
+                            <h3>AYT Sözel Netler</h3>
+                            <div class="nets-grid">
+                                <div class="net-input">
+                                    <label for="ayt-edebiyat">Edebiyat</label>
+                                    <input type="number" id="ayt-edebiyat" min="0" max="24" step="0.25" placeholder="0">
+                                    <span class="max-questions">/24</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="ayt-tarih1">Tarih-1</label>
+                                    <input type="number" id="ayt-tarih1" min="0" max="10" step="0.25" placeholder="0">
+                                    <span class="max-questions">/10</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="ayt-cografya1">Coğrafya-1</label>
+                                    <input type="number" id="ayt-cografya1" min="0" max="6" step="0.25" placeholder="0">
+                                    <span class="max-questions">/6</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="ayt-tarih2">Tarih-2</label>
+                                    <input type="number" id="ayt-tarih2" min="0" max="11" step="0.25" placeholder="0">
+                                    <span class="max-questions">/11</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="ayt-cografya2">Coğrafya-2</label>
+                                    <input type="number" id="ayt-cografya2" min="0" max="11" step="0.25" placeholder="0">
+                                    <span class="max-questions">/11</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="ayt-felsefe">Felsefe</label>
+                                    <input type="number" id="ayt-felsefe" min="0" max="12" step="0.25" placeholder="0">
+                                    <span class="max-questions">/12</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="ayt-din">Din Kültürü</label>
+                                    <input type="number" id="ayt-din" min="0" max="6" step="0.25" placeholder="0">
+                                    <span class="max-questions">/6</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AYT Eşit Ağırlık Netler -->
+                        <div id="ayt-esit-agirlik-section" class="subject-section" style="display: none;">
+                            <h3>AYT Eşit Ağırlık Netler</h3>
+                            <div class="nets-grid">
+                                <div class="net-input">
+                                    <label for="ayt-matematik-ea">Matematik</label>
+                                    <input type="number" id="ayt-matematik-ea" min="0" max="40" step="0.25" placeholder="0">
+                                    <span class="max-questions">/40</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="ayt-edebiyat-ea">Edebiyat</label>
+                                    <input type="number" id="ayt-edebiyat-ea" min="0" max="24" step="0.25" placeholder="0">
+                                    <span class="max-questions">/24</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="ayt-tarih1-ea">Tarih-1</label>
+                                    <input type="number" id="ayt-tarih1-ea" min="0" max="10" step="0.25" placeholder="0">
+                                    <span class="max-questions">/10</span>
+                                </div>
+                                <div class="net-input">
+                                    <label for="ayt-cografya1-ea">Coğrafya-1</label>
+                                    <input type="number" id="ayt-cografya1-ea" min="0" max="6" step="0.25" placeholder="0">
+                                    <span class="max-questions">/6</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- YDT Netler -->
+                        <div id="ydt-section" class="subject-section" style="display: none;">
+                            <h3>YDT Netler</h3>
+                            <div class="nets-grid">
+                                <div class="net-input">
+                                    <label for="ydt-yabanci-dil">Yabancı Dil</label>
+                                    <input type="number" id="ydt-yabanci-dil" min="0" max="80" step="0.25" placeholder="0">
+                                    <span class="max-questions">/80</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notlar -->
+                        <div class="form-group">
+                            <label for="exam-notes">Notlar</label>
+                            <textarea id="exam-notes" rows="3" placeholder="Sınav hakkında notlarınız, zor geldiğiniz konular vb."></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" id="save-exam-btn" class="btn-primary">Kaydet</button>
+                            <button type="button" id="cancel-exam-btn" class="btn-secondary">İptal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exam Detail Modal -->
+        <div id="exam-detail-modal" class="modal">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <h2 id="exam-detail-title">Deneme Detayı</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="exam-detail-content">
+                        <!-- Detay içeriği JavaScript ile doldurulacak -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis Modal -->
+        <div id="analysis-modal" class="modal">
+            <div class="modal-content modal-xl">
+                <div class="modal-header">
+                    <h2>Detaylı Analiz</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="analysis-content">
+                        <div class="chart-container">
+                            <h3>Net Gelişim Grafiği</h3>
+                            <canvas id="progress-chart"></canvas>
+                        </div>
+                        <div class="subject-analysis">
+                            <h3>Ders Bazlı Analiz</h3>
+                            <div id="subject-stats" class="subject-stats-grid">
+                                <!-- JavaScript ile doldurulacak -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>YKS Başarı Akademisi</h3>
+                        <p>Hayalindeki üniversiteye bir adım daha yakın.</p>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Hızlı Erişim</h4>
+                            <ul>
+                                <li><a href="index.html">Ana Sayfa</a></li>
+                                <li><a href="dersler.html">Dersler</a></li>
+                                <li><a href="kaynaklar.html">Kaynaklar</a></li>
+                                <li><a href="denemeler.html">Denemeler</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-column">
+                            <h4>Destek</h4>
+                            <ul>
+                                <li><a href="#">Sık Sorulan Sorular</a></li>
+                                <li><a href="iletisim.html">İletişim</a></li>
+                                <li><a href="#">Yardım Merkezi</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-column">
+                            <h4>İletişim</h4>
+                            <ul class="contact-info">
+                                <li><i class="fas fa-map-marker-alt"></i> Atatürk Bulvarı No:123, Ankara</li>
+                                <li><i class="fas fa-phone"></i> 0312 456 78 90</li>
+                                <li><i class="fas fa-envelope"></i> info@yksbasari.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>© 2025 YKS Başarı Akademisi. Tüm hakları saklıdır.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Mobile Download Button -->
+    <button class="mobile-download" id="mobile-download-btn" title="Mobil Uygulamayı İndir">
+        <i class="fas fa-download"></i>
+    </button>
+
+    <!-- Sayfa Yüklenme Animasyonu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sayfa yüklendiğinde fade-in animasyonu başlat
+            const mainPage = document.querySelector('.main-page');
+            
+            // Kısa bir gecikme ile animasyonu başlat
+            setTimeout(() => {
+                mainPage.style.opacity = '1';
+                mainPage.classList.add('fade-in');
+            }, 100);
+            
+            // Kartları sırayla animasyonla göster
+            const cards = document.querySelectorAll('.stat-card, .exam-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                }, 200 + (index * 100));
+            });
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="denemeler.js"></script>
+</body>
+</html>
